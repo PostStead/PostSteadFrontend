@@ -1,1 +1,103 @@
-<p>register works!</p>
+<div class="hero min-h-screen bg-base-200">
+  <div class="hero-content text-center">
+    <div class="max-w-md">
+      <form>
+        <div class="form-control w-full max-w-xs">
+          <label class="label">
+            <span class="label-text">What is your name?</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Ezekiel"
+            class="input input-bordered w-full max-w-xs"
+            name="username"
+            [(ngModel)]="user.username"
+          />
+        </div>
+
+        <div class="form-control w-full max-w-xs">
+          <label class="label">
+            <span class="label-text">What is your email?</span>
+          </label>
+          <input
+            type="email"
+            placeholder="hello@there.com"
+            class="input input-bordered w-full max-w-xs"
+            name="username"
+            [(ngModel)]="user.email"
+          />
+        </div>
+
+        <div class="form-control w-full max-w-xs">
+          <label class="label">
+            <span class="label-text">What is your password?</span>
+          </label>
+          <label class="input-group">
+            <input
+              type="{{ hideShowPassword }}"
+              placeholder="Password"
+              class="input input-bordered w-full max-w-xs"
+              name="password"
+              [(ngModel)]="user.password"
+              (ngModelChange)="checkPasswordComplexity()"
+            />
+            <span>
+              <i
+                class="{{
+                  hideShowPassword == 'password' ? 'ph-eye' : 'ph-eye-slash'
+                }}"
+                (click)="changeHideShowPassword()"
+              ></i>
+            </span>
+          </label>
+        </div>
+
+        <div class="form-control w-full max-w-xs">
+          <label class="label">
+            <span class="label-text">PASSWORD AGAIN</span>
+          </label>
+          <label class="input-group">
+            <input
+              type="{{ hideShowPassword }}"
+              placeholder="Password"
+              class="input input-bordered w-full max-w-xs"
+              name="confirmPassword"
+              [(ngModel)]="user.confirmPassword"
+              (ngModelChange)="checkPasswordsMatch()"
+            />
+            <span>
+              <i
+                class="{{
+                  hideShowPassword == 'password' ? 'ph-eye' : 'ph-eye-slash'
+                }}"
+                (click)="changeHideShowPassword()"
+              ></i>
+            </span>
+          </label>
+        </div>
+
+        <div class="form-control w-full max-w-xs mt-6">
+          <label class="label">
+            <span class="label-text">Password complexity</span>
+          </label>
+          <div class="avatar">
+            <div class="w-24 rounded">
+              <img src="{{ phases[passwordComplexityPhase] }}" />
+            </div>
+          </div>
+        </div>
+
+        <div class="form-control w-full max-w-xs mt-6">
+          <button
+            id="registerButton"
+            class="btn btn-primary w-full max-w-xs"
+            (click)="register()"
+            [disabled]="passwordComplexityPhase !== 0 || !passwordsMatch"
+          >
+            Register
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
