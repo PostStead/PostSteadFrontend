@@ -8,8 +8,13 @@ import { Post } from "src/app/models/post";
 })
 export class DashboardComponent implements OnInit {
   post: Post = new Post();
+  isOpened: boolean = false;
 
   constructor() {}
 
   ngOnInit(): void {}
+
+  toggleIsOpened() {
+    this.isOpened = true;
+  }
 }

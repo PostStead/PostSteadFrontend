@@ -10,7 +10,15 @@ export class PostModalComponent implements OnInit {
   @Input()
   post: Post = new Post();
 
+  @Input()
+  isOpened: boolean = false;
+
   constructor() {}
 
   ngOnInit(): void {}
+
+  toggleIsOpened() {
+    this.isOpened = false;
+    this.post = new Post();
+  }
 }

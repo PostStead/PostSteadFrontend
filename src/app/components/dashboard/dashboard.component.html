@@ -1,3 +1,4 @@
-<label for="my-modal" class="btn modal-button">Add a Post</label>
-
-<app-post-modal [post]="post"></app-post-modal>
+<label for="my-modal" class="btn btn-primary" (click)="toggleIsOpened()"
+  >Add a Post</label
+>
+<app-post-modal [post]="post" [isOpened]="isOpened"></app-post-modal>
