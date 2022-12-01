@@ -17,4 +17,9 @@ export class UserService {
   public getUserById(id: number) {
     return {id: 1, username: 'user1', email: 'user1@ps.ro', token: '123'};
   }
+
+  public login(username: string, password: string) {
+    return { id: 1, username: 'user1', email: 'user1@ps.ro', token: '123', errorCode: 0, errorMessage: '' };
+    // return { errorCode: 500, errorMessage: 'Invalid username or password' };
+  }
 }
