@@ -17,9 +17,22 @@
     <a href="/" class="btn btn-ghost normal-case text-xl">PostStead</a>
   </div>
   <div class="navbar-end">
-    <button class="btn btn-ghost btn-circle">
-      <i class="ph-magnifying-glass"></i>
-    </button>
+    <div class="dropdown">
+      <label tabindex="0" class="btn btn-ghost btn-circle">
+        <i class="ph-person"></i>
+      </label>
+      <ul
+        tabindex="0"
+        class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+      >
+        <li>
+          <label for="my-modal" class="modal-button">Add a Post</label>
+        </li>
+        <li>
+          <a>Log Out <i class="ph-sign-out"></i></a>
+        </li>
+      </ul>
+    </div>
     <div class="btn-group">
       <a class="btn btn-active" href="/login">Login</a>
       <a class="btn" href="/register">Register</a>

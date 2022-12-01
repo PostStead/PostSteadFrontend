@@ -1,0 +1,56 @@
+<form>
+  <div class="form-control w-full max-w-xs">
+    <label class="label">
+      <span class="label-text">Title</span>
+    </label>
+    <input
+      type="text"
+      placeholder="Post title"
+      class="input input-bordered w-full max-w-xs"
+      name="title"
+      [(ngModel)]="post.title"
+    />
+  </div>
+
+  <div class="form-control w-full max-w-xs">
+    <label class="label">
+      <span class="label-text">Image</span>
+    </label>
+    <input
+      type="file"
+      placeholder="Image"
+      class="file-input w-full max-w-xs"
+      name="url"
+      id="fileInput"
+      (change)="onFileChanged($event)"
+    />
+  </div>
+
+  <div class="form-control w-full max-w-xs">
+    <label class="label">
+      <span class="label-text">Description</span>
+    </label>
+    <textarea
+      type="textarea"
+      placeholder="Post description"
+      class="textarea input-bordered w-full max-w-xs"
+      name="description"
+      [(ngModel)]="post.text"
+    ></textarea>
+  </div>
+
+  <div class="form-control w-full max-w-xs mt-6" #image>
+    <img [src]="imageAsBase64" class="w-full" />
+    <a class="link" (click)="clearImage()" [hidden]="!imageAsBase64">Clear</a>
+  </div>
+
+  <div class="form-control w-full max-w-xs">
+    <button
+      class="btn btn-primary mt-6"
+      (click)="addPost()"
+      [disabled]="!post.title"
+    >
+      Add Post
+    </button>
+  </div>
+</form>

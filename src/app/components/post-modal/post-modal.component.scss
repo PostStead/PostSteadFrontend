@@ -1,0 +1,11 @@
+.close-btn {
+  display: flex;
+  justify-content: space-between;
+
+  div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+}
