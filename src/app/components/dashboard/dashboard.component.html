@@ -2,3 +2,7 @@
   >Add a Post</label
 >
 <app-post-modal [post]="post" [isOpened]="isOpened"></app-post-modal>
+
+<div *ngFor="let post of posts" class="posts-container">
+  <app-post [post]="post"></app-post>
+</div>

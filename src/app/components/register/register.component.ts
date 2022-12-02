@@ -1,36 +1,43 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { User } from 'src/app/models/user';
-import { UserService } from 'src/app/services/user.service';
+import { Component, Input, OnInit } from "@angular/core";
+import { User } from "src/app/models/user";
+import { UserService } from "src/app/services/user.service";
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  selector: "app-register",
+  templateUrl: "./register.component.html",
+  styleUrls: ["./register.component.scss"],
 })
 export class RegisterComponent implements OnInit {
-
   @Input()
   user: User = new User();
 
-  phases: string[] = ['../../assets/img/phase1.png', '../../assets/img/phase2.png', '../../assets/img/phase3.png', '../../assets/img/phase4.png']
+  phases: string[] = [
+    "../../assets/img/phase1.png",
+    "../../assets/img/phase2.png",
+    "../../assets/img/phase3.png",
+    "../../assets/img/phase4.png",
+  ];
   passwordComplexityPhase: number = 0;
-  hideShowPassword: string = 'password';
+  hideShowPassword: string = "password";
   passwordsMatch: boolean = false;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   changeHideShowPassword() {
-    if (this.hideShowPassword == 'password') {
-      this.hideShowPassword = 'text';
+    if (this.hideShowPassword == "password") {
+      this.hideShowPassword = "text";
     } else {
-      this.hideShowPassword = 'password';
+      this.hideShowPassword = "password";
     }
   }
 
   checkPasswordComplexity() {
+    if (!this.user.password) {
+      return;
+    }
+
     if (this.user.password === this.user.confirmPassword) {
       this.passwordsMatch = true;
     } else {
@@ -67,5 +74,4 @@ export class RegisterComponent implements OnInit {
     console.log("register");
     console.log(this.user);
   }
-
 }

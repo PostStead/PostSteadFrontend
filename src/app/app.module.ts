@@ -11,6 +11,8 @@ import { AddPostComponent } from './components/add-post/add-post.component';
 import { PostModalComponent } from './components/post-modal/post-modal.component';
 import { EditPostComponent } from './components/edit-post/edit-post.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { PostComponent } from './components/post/post.component';
+import { ShowPostComponent } from './components/show-post/show-post.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     AddPostComponent,
     PostModalComponent,
     EditPostComponent,
-    DashboardComponent
+    DashboardComponent,
+    PostComponent,
+    ShowPostComponent
   ],
   imports: [
     BrowserModule,

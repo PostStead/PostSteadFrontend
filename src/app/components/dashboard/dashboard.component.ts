@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Post } from "src/app/models/post";
+import { PostService } from "src/app/services/post.service";
 
 @Component({
   selector: "app-dashboard",
@@ -10,9 +11,13 @@ export class DashboardComponent implements OnInit {
   post: Post = new Post();
   isOpened: boolean = false;
 
-  constructor() {}
+  posts: Post[] = [];
 
-  ngOnInit(): void {}
+  constructor(private postService: PostService) {}
+
+  ngOnInit(): void {
+    this.posts = this.postService.getPosts();
+  }
 
   toggleIsOpened() {
     this.isOpened = true;
