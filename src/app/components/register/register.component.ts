@@ -35,6 +35,7 @@ export class RegisterComponent implements OnInit {
 
   checkPasswordComplexity() {
     if (!this.user.password) {
+      this.passwordComplexityPhase = 3;
       return;
     }
 
