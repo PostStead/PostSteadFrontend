@@ -4,12 +4,15 @@ import { DashboardComponent } from "./components/dashboard/dashboard.component";
 import { LoginComponent } from "./components/login/login.component";
 import { RegisterComponent } from "./components/register/register.component";
 import { ShowPostComponent } from "./components/show-post/show-post.component";
+import { ErrorComponent } from "./components/error/error.component";
 
 const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
   { path: "", component: DashboardComponent },
   { path: "post/:id", component: ShowPostComponent },
+  { path: "404", component: ErrorComponent },
+  { path: "**", redirectTo: "/404" },
 ];
 
 @NgModule({

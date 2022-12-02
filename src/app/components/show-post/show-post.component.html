@@ -1,1 +1,19 @@
-<p>show-post works!</p>
+<div class="post-container">
+  <div class="card card-compact bg-base-100 shadow-xl h-full" *ngIf="post">
+    <div class="card-body">
+      <h1 class="card-title">{{ post.title }}</h1>
+      <h6>
+        Posted by:
+        <span class="username">{{ user.username }}</span>
+        @
+        <span>
+          {{ getPostDate() }}
+        </span>
+      </h6>
+    </div>
+    <figure><img src="{{ post.url }}" alt="Shoes" /></figure>
+    <div class="card-body">
+      <p>{{ post.text }}</p>
+    </div>
+  </div>
+</div>
