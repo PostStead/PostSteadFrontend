@@ -1,0 +1,16 @@
+.username {
+  color: #c9c9c9;
+}
+
+.card {
+  .card-body {
+    .post-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    .post-title:hover {
+      color: #2597fa;
+      cursor: pointer;
+    }
+  }
+}

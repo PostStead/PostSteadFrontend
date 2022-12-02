@@ -1,26 +1,36 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { LoginComponent } from "./components/login/login.component";
+import { RegisterComponent } from "./components/register/register.component";
+import { NavbarComponent } from "./components/navbar/navbar.component";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { AddPostComponent } from "./components/add-post/add-post.component";
+import { PostModalComponent } from "./components/post-modal/post-modal.component";
+import { EditPostComponent } from "./components/edit-post/edit-post.component";
+import { DashboardComponent } from "./components/dashboard/dashboard.component";
+import { PostComponent } from "./components/post/post.component";
+import { ShowPostComponent } from "./components/show-post/show-post.component";
+import { ErrorComponent } from "./components/error/error.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    NavbarComponent
+    NavbarComponent,
+    AddPostComponent,
+    PostModalComponent,
+    EditPostComponent,
+    DashboardComponent,
+    PostComponent,
+    ShowPostComponent,
+    ErrorComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

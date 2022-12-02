@@ -1,0 +1,11 @@
+.posts-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  .add-post-button {
+    right: 0 !important;
+    font-size: 1.3rem;
+  }
+}

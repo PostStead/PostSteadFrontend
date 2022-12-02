@@ -1,0 +1,14 @@
+<app-post-modal [post]="post" [isOpened]="isOpened"></app-post-modal>
+
+<div class="posts-container">
+  <label
+    for="my-modal"
+    class="btn btn-square btn-outline add-post-button"
+    (click)="toggleIsOpened()"
+    ><i class="ph-note-pencil"></i
+  ></label>
+
+  <div *ngFor="let post of posts">
+    <app-post [post]="post"></app-post>
+  </div>
+</div>
