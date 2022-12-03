@@ -5,6 +5,7 @@
     for="my-modal"
     class="btn btn-square btn-outline add-post-button"
     (click)="toggleIsOpened()"
+    *ngIf="isLoggedIn"
     ><i class="ph-note-pencil"></i
   ></label>
 

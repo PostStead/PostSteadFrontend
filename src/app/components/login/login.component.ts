@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { User } from "src/app/models/user";
+import { AuthService } from "src/app/services/auth.service";
 import { UserService } from "src/app/services/user.service";
 
 @Component({
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   hideShowPassword: string = "password";
   error: any;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private authService: AuthService) {}
 
   ngOnInit(): void {}
 
@@ -29,17 +30,18 @@ export class LoginComponent implements OnInit {
   login() {
     // console.log(this.user);
 
-    if (!this.user.password || !this.user.email) {
+    if (!this.user.password || !this.user.username) {
       return;
     }
 
-    let result = this.userService.login(this.user.username, this.user.password);
+    let result = this.authService.login(this.user.username, this.user.password);
 
     if (result.errorCode !== 0) {
       this.error = result;
       console.log(this.error);
     } else {
       console.log("Login successful");
+      window.location.href = "/";
     }
   }
 }

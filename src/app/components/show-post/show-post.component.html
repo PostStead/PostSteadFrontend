@@ -1,4 +1,7 @@
 <div class="post-container">
+  <div class="btn btn-square btn-outline back-button" (click)="navigateBack()">
+    <i class="ph-arrow-left"></i>
+  </div>
   <div class="card card-compact bg-base-100 shadow-xl h-full" *ngIf="post">
     <div class="card-body">
       <h1 class="card-title">{{ post.title }}</h1>

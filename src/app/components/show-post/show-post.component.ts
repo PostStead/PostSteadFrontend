@@ -49,4 +49,9 @@ export class ShowPostComponent implements OnInit {
       date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear()
     );
   }
+
+  navigateBack() {
+    window.history.back();
+    // window.location.href = "/";
+  }
 }

@@ -18,19 +18,16 @@
   </div>
   <div class="navbar-end">
     <div class="dropdown">
-      <label tabindex="0" class="btn btn-ghost btn-circle">
-        <i class="ph-person"></i>
-      </label>
-      <ul
+      <label
         tabindex="0"
-        class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+        class="btn btn-ghost btn-circle"
+        (click)="logout()"
+        *ngIf="isLoggedIn"
       >
-        <li>
-          <a>Log Out <i class="ph-sign-out"></i></a>
-        </li>
-      </ul>
+        <i class="ph-sign-out"></i>
+      </label>
     </div>
-    <div class="btn-group">
+    <div class="btn-group" *ngIf="!isLoggedIn">
       <a class="btn btn-active" href="/login">Login</a>
       <a class="btn" href="/register">Register</a>
     </div>

@@ -4,8 +4,12 @@
   justify-content: center;
   flex-direction: column;
 
+  .back-button {
+    right: 0 !important;
+    font-size: 1.3rem;
+  }
+
   .card {
-    // width: 75%;
     .card-body {
       .post-title {
         font-size: 1.5rem;
