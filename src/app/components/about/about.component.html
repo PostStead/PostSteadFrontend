@@ -1,1 +1,49 @@
-<p>about works!</p>
+<div>
+  <div
+    class="hero min-h-screen"
+    [ngStyle]="{ 'background-image': 'url(' + image + ')', color: 'white' }"
+  >
+    <div class="hero-content text-center">
+      <div class="max-w-md">
+        <h1
+          class="mb-5 text-5xl font-bold"
+          (mouseenter)="changeText(1)"
+          (mouseleave)="changeText(2)"
+          [style]="{ cursor: 'default' }"
+        >
+          {{ titleText }}
+        </h1>
+        <p class="mb-5">
+          We are PostStead, a website where everyone can share their memes. We
+          are a community of meme lovers and we are here to help you share your
+          memes with the world.
+        </p>
+        <a href="/" class="btn btn-primary">Get Started</a>
+        <div>
+          <label for="my-modal-3" class="btn btn-warning mt-6">Rate Us!</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- The button to open modal -->
+
+<!-- Put this part before </body> tag -->
+<input type="checkbox" id="my-modal-3" class="modal-toggle" />
+<div class="modal">
+  <div class="modal-box relative">
+    <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2"
+      >✕</label
+    >
+    <h3 class="text-lg font-bold">Give us a rating!</h3>
+    <h6>We will not save it because we do not value your opinion</h6>
+    <div class="rating">
+      <input type="radio" name="rating-1" class="mask mask-star" checked />
+      <input type="radio" name="rating-1" class="mask mask-star" />
+      <input type="radio" name="rating-1" class="mask mask-star" />
+      <input type="radio" name="rating-1" class="mask mask-star" />
+      <input type="radio" name="rating-1" class="mask mask-star" />
+    </div>
+  </div>
+</div>
