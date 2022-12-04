@@ -23,7 +23,7 @@ export class PostService {
         text: "This is a post to remember 2",
         url: "https://i.kym-cdn.com/photos/images/newsfeed/002/366/098/a74.jpg",
         createdAt: new Date(),
-        userId: 1,
+        userId: 2,
       },
     ];
     return posts;
@@ -45,7 +45,7 @@ export class PostService {
         text: "This is a post to remember 2",
         url: "https://i.kym-cdn.com/photos/images/newsfeed/002/366/098/a74.jpg",
         createdAt: new Date(),
-        userId: 1,
+        userId: 2,
       },
     ];
     return posts.find((post) => post.id === id);

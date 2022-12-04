@@ -35,8 +35,14 @@ export class ShowPostComponent implements OnInit {
       return;
     }
 
+    let foundUser;
+
     if (this.post.userId) {
-      this.user = this.userService.getUserById(this.post.userId);
+      foundUser = this.userService.getUserById(this.post.userId);
+    }
+
+    if (foundUser) {
+      this.user = foundUser;
     }
   }
 

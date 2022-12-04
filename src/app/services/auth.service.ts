@@ -32,4 +32,14 @@ export class AuthService {
     window.location.href = '/';
   }
 
+  getCurrentUser() {
+    let userJson = localStorage.getItem('currentUser');
+    
+    if (!userJson) {
+      return null;
+    }
+
+    return JSON.parse(userJson);
+  }
+
 }

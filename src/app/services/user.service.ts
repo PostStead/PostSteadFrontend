@@ -15,7 +15,12 @@ export class UserService {
   }
 
   public getUserById(id: number) {
-    return { id: 1, username: 'user1', email: 'user1@ps.ro', token: '123' };
+    let users = this.getUsers();
+    let user = users.find((user) => user.id === id);
+    if (user) {
+      return user;
+    }
+    return null;
   }
 
   public login(username: string, password: string) {

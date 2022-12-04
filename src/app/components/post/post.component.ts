@@ -17,8 +17,12 @@ export class PostComponent implements OnInit {
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
+    let foundUser;
     if (this.post.userId) {
-      this.user = this.userService.getUserById(this.post.userId);
+      foundUser = this.userService.getUserById(this.post.userId);
+    }
+    if (foundUser) {
+      this.user = foundUser;
     }
   }
 

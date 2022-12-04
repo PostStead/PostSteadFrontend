@@ -14,6 +14,8 @@ import { DashboardComponent } from "./components/dashboard/dashboard.component";
 import { PostComponent } from "./components/post/post.component";
 import { ShowPostComponent } from "./components/show-post/show-post.component";
 import { ErrorComponent } from "./components/error/error.component";
+import { AboutComponent } from './components/about/about.component';
+import { PostsComponent } from './components/posts/posts.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { ErrorComponent } from "./components/error/error.component";
     PostComponent,
     ShowPostComponent,
     ErrorComponent,
+    AboutComponent,
+    PostsComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
