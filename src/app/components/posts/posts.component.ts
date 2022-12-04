@@ -9,11 +9,20 @@ import { PostService } from 'src/app/services/post.service';
   styleUrls: ['./posts.component.scss']
 })
 export class PostsComponent implements OnInit {
-  posts: Post[] = this.getPosts();
+  posts: Post[] = [];
+  isLoggedIn: boolean = false;
 
   constructor(private authService: AuthService, private postService: PostService) { }
 
   ngOnInit(): void {
+    this.authService.isLoggedIn$.subscribe(isLoggedIn => {
+      this.isLoggedIn = isLoggedIn;
+      if (isLoggedIn === false) {
+        window.location.href = "/login";
+      }
+    });
+
+    this.posts = this.getPosts();
   }
 
   getPosts() {
@@ -27,6 +36,15 @@ export class PostsComponent implements OnInit {
     return (
       date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear()
     );
+  }
+
+  deletePost(id: number | undefined) {
+    if (!id) {
+      return;
+    }
+    
+    this.postService.deletePostById(id);
+    this.posts = this.getPosts();
   }
 
 }
