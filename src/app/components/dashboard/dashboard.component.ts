@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, EventEmitter, OnInit } from "@angular/core";
 import { Post } from "src/app/models/post";
 import { AuthService } from "src/app/services/auth.service";
 import { PostService } from "src/app/services/post.service";
@@ -10,7 +10,7 @@ import { PostService } from "src/app/services/post.service";
 })
 export class DashboardComponent implements OnInit {
   post: Post = new Post();
-  isOpened: boolean = false;
+  isOpened: EventEmitter<boolean> = new EventEmitter<boolean>();
   isLoggedIn: boolean = false;
 
   posts: Post[] = [];
@@ -25,6 +25,6 @@ export class DashboardComponent implements OnInit {
   }
 
   toggleIsOpened() {
-    this.isOpened = true;
+    this.isOpened.emit(true);
   }
 }

@@ -6,12 +6,12 @@
         <p *ngIf="!post.id" class="text-s font-bold">Add a new post</p>
         <p *ngIf="post.id" class="text-s font-bold">Edit post</p>
       </div>
-      <label for="my-modal" class="btn" (click)="toggleIsOpened()">
+      <label for="my-modal" class="btn">
         <i class="ph-x"></i>
       </label>
     </div>
     <div *ngIf="!post.id">
-      <app-add-post [post]="post"></app-add-post>
+      <app-add-post [post]="post" [isOpened]="isOpened"></app-add-post>
     </div>
     <div *ngIf="post.id">
       <app-edit-post [post]="post"></app-edit-post>

@@ -1,4 +1,5 @@
-import { Component, Input, OnInit, ViewChildren } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, ViewChildren } from "@angular/core";
+import { Observable, Subscription } from "rxjs";
 import { Post } from "src/app/models/post";
 
 @Component({
@@ -10,15 +11,27 @@ export class AddPostComponent implements OnInit {
   @Input()
   post: Post = new Post();
 
+  @Input()
+  isOpened: Observable<boolean> = new EventEmitter<boolean>();
+
+  private isOpenedSubscription: Subscription;
+
   blob: Blob | undefined;
 
   imageAsBase64: string | undefined;
   fileName: string | undefined;
 
-  constructor() {}
+  constructor() {
+    this.isOpenedSubscription = this.isOpened.subscribe((isOpened) => {
+      this.clearImage();
+    });
+  }
 
   ngOnInit(): void {
     this.post = new Post();
+    this.isOpenedSubscription = this.isOpened.subscribe((isOpened) => {
+      this.clearImage();
+    });
   }
 
   addPost() {

@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit } from "@angular/core";
+import { Observable, Subscription } from "rxjs";
 import { Post } from "src/app/models/post";
 
 @Component({
@@ -11,14 +12,23 @@ export class PostModalComponent implements OnInit {
   post: Post = new Post();
 
   @Input()
-  isOpened: boolean = false;
+  isOpened: Observable<boolean> = new EventEmitter<boolean>();
 
-  constructor() {}
+  private isOpenedSubscription: Subscription;
 
-  ngOnInit(): void {}
+  constructor() {
+    this.isOpenedSubscription = this.isOpened.subscribe((isOpened) => {
+      this.toggleIsOpened();
+    });
+  }
+
+  ngOnInit(): void {
+    this.isOpenedSubscription = this.isOpened.subscribe((isOpened) => {
+      this.toggleIsOpened();
+    });
+  }
 
   toggleIsOpened() {
-    this.isOpened = false;
     this.post = new Post();
   }
 }
