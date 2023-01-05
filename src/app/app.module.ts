@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
+import { HttpClientModule } from "@angular/common/http";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -14,8 +15,8 @@ import { DashboardComponent } from "./components/dashboard/dashboard.component";
 import { PostComponent } from "./components/post/post.component";
 import { ShowPostComponent } from "./components/show-post/show-post.component";
 import { ErrorComponent } from "./components/error/error.component";
-import { AboutComponent } from './components/about/about.component';
-import { PostsComponent } from './components/posts/posts.component';
+import { AboutComponent } from "./components/about/about.component";
+import { PostsComponent } from "./components/posts/posts.component";
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { PostsComponent } from './components/posts/posts.component';
     AboutComponent,
     PostsComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })
