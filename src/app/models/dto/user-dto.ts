@@ -1,8 +1,12 @@
 export class UserDto {
-  id?: number;
+  id?: string;
   name: string = "";
-  password?: string = "";
   email?: string = "";
+  firstName?: string = "";
+  lastName?: string = "";
+  phone?: string = "";
+  errorCode?: number = 0;
+  errorMessage?: string = "";
 
   // static fromJson(json: any): UserDto {
   //   const user = new UserDto();

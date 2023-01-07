@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 import { UserService } from "./user.service";
+import { UserDto } from "../models/dto/user-dto";
 
 @Injectable({
   providedIn: "root",
@@ -18,12 +19,39 @@ export class AuthService {
   }
 
   login(username: string, password: string) {
-    let result = this.userService.login(username, password);
-    if (result.errorCode === 0) {
-      this._isLoggedIn$.next(true);
-      localStorage.setItem("currentUser", JSON.stringify(result));
-    }
-    return result;
+    // let errorCode = 0;
+    // let errorMessage = "";
+    // let result = this.userService.login(username, password).subscribe(
+    //   (response) => {
+    //     console.log(response);
+    //     this._isLoggedIn$.next(true);
+    //     localStorage.setItem("currentUser", JSON.stringify(response));
+    //     return response;
+    //   },
+    //   (error) => {
+    //     console.log(error);
+    //     errorCode = 500;
+    //     errorMessage = "Invalid username or password";
+    //     return { errorCode: 500, errorMessage: "Invalid username or password" };
+    //   }
+    // );
+    // return { errorCode: errorCode, errorMessage: errorMessage }
+
+    return this.userService.login(username, password).subscribe({
+      next: (response) => {
+        let userDto = new UserDto();
+        console.log(response);
+        this._isLoggedIn$.next(true);
+        localStorage.setItem("currentUser", JSON.stringify(response));
+        userDto = response;
+        return { ...userDto, errorCode: 0, errorMessage: "" };
+      },
+      error: (error) => {
+        console.log(error);
+        let userDto = new UserDto();
+        return { ...userDto, errorCode: 500, errorMessage: "Invalid username or password" };
+      }
+    });
   }
 
   logout() {

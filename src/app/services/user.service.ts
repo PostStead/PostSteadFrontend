@@ -2,13 +2,14 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { User } from "../models/user";
 import { HttpClient } from "@angular/common/http";
+import { UserDto } from "../models/dto/user-dto";
 
 @Injectable({
   providedIn: "root",
 })
 export class UserService {
-  // apiUrl = "http://localhost:8081/api";
-  apiUrl = "https://poststead.online/api";
+  apiUrl = "http://localhost:8081/api";
+  // apiUrl = "https://poststead.online/api";
   apiProxyConfig = {
     headers: {
       "Content-Type": "application/json",
@@ -71,18 +72,13 @@ export class UserService {
     //   errorMessage: "",
     // };
     // return { errorCode: 500, errorMessage: 'Invalid username or password' };
-    this.getUserByUsername(username).subscribe((user) => {
-      console.log("user:", user);
+    return this.http.get<UserDto>(`${this.apiUrl}/users/${username}`, {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Authorization": `Basic ${btoa(username + ":" + password)}`
+      },
     });
-
-    return {
-      id: 1,
-      username: "user1",
-      email: "user1@ps.ro",
-      token: "123",
-      errorCode: 0,
-      errorMessage: "",
-    };
   }
 
   public register(
@@ -90,10 +86,25 @@ export class UserService {
     email: string,
     password: string
   ): Observable<User> {
-    return this.http.post<User>(`${this.apiUrl}/user`, {
-      name: username,
+    // return this.http.post<User>(`${this.apiUrl}/users`, {
+    //   name: username,
+    //   email: email,
+    //   password: password,
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     "Access-Control-Allow-Origin": "*",
+    //     "Authorization": "Basic " + btoa(username + ":" + password)
+    //   },
+    // });
+    console.log(username, email, password);
+    return this.http.post<User>(`${this.apiUrl}/users`, {
+      userName: username,
       email: email,
       password: password,
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
     });
   }
 }

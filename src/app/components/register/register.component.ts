@@ -72,7 +72,14 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    console.log("register");
-    console.log(this.user);
+    // console.log(this.user);
+    this.userService.register(this.user.username, "test", "test").subscribe(
+      (response) => {
+        console.log(response);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }
