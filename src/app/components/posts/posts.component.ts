@@ -38,7 +38,7 @@ export class PostsComponent implements OnInit {
     );
   }
 
-  deletePost(id: number | undefined) {
+  deletePost(id: string | undefined) {
     if (!id) {
       return;
     }

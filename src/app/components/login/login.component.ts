@@ -35,21 +35,18 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    let result = this.authService.login(this.user.username, this.user.password);
-    console.log(result);
-    if (localStorage.getItem("currentUser")) {
-      console.log("Login successful");
-      window.location.href = "/";
-    } else {
-      this.error = "Invalid username or password";
-    }
-    // console.log(result);
-    // if (result.errorCode !== 0) {
-    //   this.error = result;
-    //   console.log(this.error);
-    // } else {
-    //   console.log("Login successful");
-    //   window.location.href = "/";
-    // }
+    this.userService.login(this.user.username, this.user.password).subscribe({
+      next: (data) => {
+        console.log(data);
+        this.authService.setIsLoggedIn(true);
+        localStorage.setItem("currentUser", JSON.stringify(data));
+        this.error = null;
+        window.location.href = "/";
+      },
+      error: (error) => {
+        console.log(error);
+        this.error = error;
+      }
+    });
   }
 }

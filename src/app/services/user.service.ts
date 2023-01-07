@@ -21,7 +21,7 @@ export class UserService {
   public getUsers() {
     return [
       {
-        id: 1,
+        id: "1",
         username: "user1",
         email: "user1@ps.ro",
         token: "123",
@@ -29,7 +29,7 @@ export class UserService {
         errorMessage: "",
       },
       {
-        id: 2,
+        id: "2",
         username: "user2",
         email: "user2@ps.ro",
         token: "456",
@@ -39,7 +39,7 @@ export class UserService {
     ];
   }
 
-  public getUserById(id: number) {
+  public getUserById(id: string) {
     let users = this.getUsers();
     let user = users.find((user) => user.id === id);
     if (user) {

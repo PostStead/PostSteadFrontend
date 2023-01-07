@@ -18,38 +18,22 @@ export class AuthService {
     }
   }
 
-  login(username: string, password: string) {
-    // let errorCode = 0;
-    // let errorMessage = "";
-    // let result = this.userService.login(username, password).subscribe(
-    //   (response) => {
-    //     console.log(response);
-    //     this._isLoggedIn$.next(true);
-    //     localStorage.setItem("currentUser", JSON.stringify(response));
-    //     return response;
-    //   },
-    //   (error) => {
-    //     console.log(error);
-    //     errorCode = 500;
-    //     errorMessage = "Invalid username or password";
-    //     return { errorCode: 500, errorMessage: "Invalid username or password" };
-    //   }
-    // );
-    // return { errorCode: errorCode, errorMessage: errorMessage }
+  setIsLoggedIn(isLoggedIn: boolean) {
+    this._isLoggedIn$.next(isLoggedIn);
+  }
 
+  // this is deprecated
+  // implemented in login.component.ts
+  login(username: string, password: string) {
     return this.userService.login(username, password).subscribe({
       next: (response) => {
-        let userDto = new UserDto();
         console.log(response);
         this._isLoggedIn$.next(true);
         localStorage.setItem("currentUser", JSON.stringify(response));
-        userDto = response;
-        return { ...userDto, errorCode: 0, errorMessage: "" };
       },
       error: (error) => {
         console.log(error);
-        let userDto = new UserDto();
-        return { ...userDto, errorCode: 500, errorMessage: "Invalid username or password" };
+        return { errorCode: 500, errorMessage: "Invalid username or password" };
       }
     });
   }

@@ -11,7 +11,7 @@ import { UserService } from "src/app/services/user.service";
 })
 export class ShowPostComponent implements OnInit {
   post: Post | undefined;
-  id: number = 0;
+  id: string = "0";
   user: User = new User();
 
   constructor(
@@ -21,7 +21,7 @@ export class ShowPostComponent implements OnInit {
 
   ngOnInit(): void {
     // get id from url
-    this.id = parseInt(window.location.pathname.split("/")[2]);
+    this.id = window.location.pathname.split("/")[2];
     if (!this.id || this.postService.getPostById(this.id) === undefined) {
       window.location.href = "/404";
       return;

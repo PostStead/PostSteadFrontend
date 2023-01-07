@@ -1,10 +1,10 @@
 export class Post {
-  id?: number;
+  id?: string;
   title: string = "";
   url: string = "";
   text: string = "";
   createdAt?: Date;
-  userId?: number;
+  userId?: string;
 
   static fromJson(json: any): Post {
     const post = new Post();
