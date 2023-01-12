@@ -73,13 +73,16 @@ export class RegisterComponent implements OnInit {
 
   register() {
     // console.log(this.user);
-    this.userService.register(this.user.username, "test", "test").subscribe(
-      (response) => {
-        console.log(response);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    this.userService
+      .register(this.user.username, "test", this.user.password ?? "123456")
+      .subscribe(
+        (response) => {
+          console.log(response);
+          window.location.href = "/login";
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 }

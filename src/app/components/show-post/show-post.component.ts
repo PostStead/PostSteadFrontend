@@ -28,7 +28,7 @@ export class ShowPostComponent implements OnInit {
     }
 
     this.postService.getPostById(this.id).subscribe((post) => {
-      this.post = Post.fromPostDto(post);
+      this.post = post;
     });
 
     if (!this.post) {
@@ -39,8 +39,8 @@ export class ShowPostComponent implements OnInit {
 
     let foundUser;
 
-    if (this.post.userId) {
-      foundUser = this.userService.getUserById(this.post.userId);
+    if (this.post.createdBy) {
+      foundUser = this.userService.getUserById(this.post.createdBy);
     }
 
     if (foundUser) {

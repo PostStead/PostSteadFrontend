@@ -1,32 +1,37 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { PostDto } from 'src/app/models/dto/post-dto';
-import { Post } from 'src/app/models/post';
-import { AuthService } from 'src/app/services/auth.service';
-import { PostService } from 'src/app/services/post.service';
+import { Component, OnInit } from "@angular/core";
+import { Observable } from "rxjs";
+import { PostDto } from "src/app/models/dto/post-dto";
+import { Post } from "src/app/models/post";
+import { AuthService } from "src/app/services/auth.service";
+import { PostService } from "src/app/services/post.service";
 
 @Component({
-  selector: 'app-posts',
-  templateUrl: './posts.component.html',
-  styleUrls: ['./posts.component.scss']
+  selector: "app-posts",
+  templateUrl: "./posts.component.html",
+  styleUrls: ["./posts.component.scss"],
 })
 export class PostsComponent implements OnInit {
   posts: Post[] = [];
   isLoggedIn: boolean = false;
 
-  constructor(private authService: AuthService, private postService: PostService) { }
+  constructor(
+    private authService: AuthService,
+    private postService: PostService
+  ) {}
 
   ngOnInit(): void {
-    this.authService.isLoggedIn$.subscribe(isLoggedIn => {
+    this.authService.isLoggedIn$.subscribe((isLoggedIn) => {
       this.isLoggedIn = isLoggedIn;
       if (isLoggedIn === false) {
         window.location.href = "/login";
       }
     });
 
-    this.getPosts().subscribe(posts => {
-      for (let post of posts) {
-        this.posts.push(Post.fromPostDto(post));
+    this.getPosts().subscribe((result) => {
+      for (let post of result.data) {
+        // this.posts.push(Post.fromPostDto(post));
+        console.log(post);
+        this.posts.push(post);
       }
     });
   }
@@ -48,15 +53,17 @@ export class PostsComponent implements OnInit {
     if (!id) {
       return;
     }
-    
-    this.postService.deletePostById(id);
 
-    this.getPosts().subscribe(result => {
+    this.postService.deletePostById(id).subscribe((result) => {
+      console.log(result);
+    });
+
+    this.getPosts().subscribe((result) => {
       for (let post of result.data) {
         // this.posts.push(Post.fromPostDto(post));
         console.log(post);
+        this.posts.push(post);
       }
     });
   }
-
 }

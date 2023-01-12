@@ -1,6 +1,15 @@
-import { Component, EventEmitter, Input, OnInit, ViewChildren } from "@angular/core";
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  ViewChildren,
+} from "@angular/core";
 import { Observable, Subscription } from "rxjs";
 import { Post } from "src/app/models/post";
+import { AuthService } from "src/app/services/auth.service";
+import { PostService } from "src/app/services/post.service";
+import { S3ServiceService } from "src/app/services/s3-service.service";
 
 @Component({
   selector: "app-add-post",
@@ -14,6 +23,10 @@ export class AddPostComponent implements OnInit {
   @Input()
   isOpened: Observable<boolean> = new EventEmitter<boolean>();
 
+  loading: boolean = false;
+
+  internalFileName: string = "";
+
   private isOpenedSubscription: Subscription;
 
   blob: Blob | undefined;
@@ -21,7 +34,11 @@ export class AddPostComponent implements OnInit {
   imageAsBase64: string | undefined;
   fileName: string | undefined;
 
-  constructor() {
+  constructor(
+    private postService: PostService,
+    private authService: AuthService,
+    private s3Service: S3ServiceService
+  ) {
     this.isOpenedSubscription = this.isOpened.subscribe((isOpened) => {
       this.clearImage();
     });
@@ -35,10 +52,17 @@ export class AddPostComponent implements OnInit {
   }
 
   addPost() {
-    console.log(this.post);
+    this.post.url = this.s3Service.getSignedUrl(this.internalFileName);
+    console.log(this.internalFileName);
+
+    this.postService.createPost(this.post).subscribe((result) => {
+      console.log(result);
+      window.location.href = "/";
+    });
   }
 
-  public onFileChanged(event: any) {
+  public async onFileChanged(event: any) {
+    this.loading = true;
     const file = event.target.files[0];
 
     if (file) {
@@ -49,6 +73,14 @@ export class AddPostComponent implements OnInit {
       reader.onload = (_event) => {
         this.imageAsBase64 = reader.result as string;
       };
+      // generate random guid
+      let fileId =
+        Math.random().toString(36).substring(2, 15) +
+        Math.random().toString(36).substring(2, 15);
+      await this.s3Service.uploadFile(file, fileId);
+      this.internalFileName = fileId;
+
+      this.loading = false;
     }
   }
 

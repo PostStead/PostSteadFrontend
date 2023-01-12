@@ -21,8 +21,7 @@ export class DashboardComponent implements OnInit {
     this.postService.getPosts().subscribe(result => {
       console.log(result.data);
       for (let post of result.data) {
-        this.posts.push(Post.fromPostDto(post));
-        // console.log(post);
+        this.posts.push(post);
       }
     });
     this.authService.isLoggedIn$.subscribe(isLoggedIn => {

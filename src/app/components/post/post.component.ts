@@ -18,8 +18,8 @@ export class PostComponent implements OnInit {
 
   ngOnInit(): void {
     let foundUser;
-    if (this.post.userId) {
-      foundUser = this.userService.getUserById(this.post.userId);
+    if (this.post.createdBy) {
+      foundUser = this.userService.getUserById(this.post.createdBy);
     }
     if (foundUser) {
       this.user = foundUser;

@@ -6,7 +6,7 @@ export class Post {
   url: string = "";
   text: string = "";
   createdAt?: Date;
-  userId?: string;
+  createdBy?: string;
 
   static fromJson(json: any): Post {
     const post = new Post();
@@ -15,7 +15,7 @@ export class Post {
     post.url = json.Url;
     post.text = json.Text;
     post.createdAt = json.CreatedAt;
-    post.userId = json.UserId;
+    post.createdBy = json.createdBy;
     return post;
   }
 
@@ -26,7 +26,7 @@ export class Post {
     post.title = content.title;
     post.url = content.url;
     post.text = content.text;
-    post.userId = postDto.createdBy;
+    post.createdBy = postDto.createdBy;
     return post;
   }
 

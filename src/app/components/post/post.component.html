@@ -2,17 +2,16 @@
   <div class="card-body">
     <h6>
       Posted by:
-      <span class="username">{{ user.username }}</span>
-      @
+      <span class="username">{{ post.createdBy }}</span>
       <span>
-        {{ getPostDate() }}
+        {{ getPostDate() ? "@" + getPostDate() : "" }}
       </span>
     </h6>
     <a class="post-title" href="/post/{{ post.id }}">
       <h1>{{ post.title }}</h1>
     </a>
   </div>
-  <figure><img src="{{ post.url }}" alt="Shoes" /></figure>
+  <figure><img src="{{ post.url }}" /></figure>
   <div class="card-body">
     <p>{{ post.text }}</p>
   </div>

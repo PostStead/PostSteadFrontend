@@ -76,7 +76,7 @@ export class UserService {
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
-        "Authorization": `Basic ${btoa(username + ":" + password)}`
+        Authorization: `Basic ${btoa(username + ":" + password)}`,
       },
     });
   }

@@ -13,7 +13,7 @@ export class PostDto {
             url: post.url,
             text: post.text,
         }.toString();
-        postDto.createdBy = post.userId;
+        postDto.createdBy = post.createdBy;
         return postDto;
     }
 }
