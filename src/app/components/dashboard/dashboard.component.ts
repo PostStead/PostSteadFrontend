@@ -18,7 +18,13 @@ export class DashboardComponent implements OnInit {
   constructor(private postService: PostService, private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.posts = this.postService.getPosts();
+    this.postService.getPosts().subscribe(result => {
+      console.log(result.data);
+      for (let post of result.data) {
+        this.posts.push(Post.fromPostDto(post));
+        // console.log(post);
+      }
+    });
     this.authService.isLoggedIn$.subscribe(isLoggedIn => {
       this.isLoggedIn = isLoggedIn;
     });

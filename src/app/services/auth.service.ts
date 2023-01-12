@@ -40,6 +40,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem("currentUser");
+    localStorage.removeItem("currentUserPassword");
     this._isLoggedIn$.next(false);
     window.location.href = "/";
   }
@@ -52,6 +53,15 @@ export class AuthService {
     }
 
     return JSON.parse(userJson);
+  }
+
+  getCurrentUserUsername() {
+    let user = this.getCurrentUser();
+    return user.name;
+  }
+
+  getCurrentUserPassword() {
+    return localStorage.getItem("currentUserPassword");
   }
 
   register(username: string, email: string, password: string) {

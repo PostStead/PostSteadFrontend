@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit {
         console.log(data);
         this.authService.setIsLoggedIn(true);
         localStorage.setItem("currentUser", JSON.stringify(data));
+        localStorage.setItem("currentUserPassword", this.user.password ?? "");
         this.error = null;
         window.location.href = "/";
       },

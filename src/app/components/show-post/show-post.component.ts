@@ -27,7 +27,9 @@ export class ShowPostComponent implements OnInit {
       return;
     }
 
-    this.post = this.postService.getPostById(this.id);
+    this.postService.getPostById(this.id).subscribe((post) => {
+      this.post = Post.fromPostDto(post);
+    });
 
     if (!this.post) {
       // redirect to 404

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { PostDto } from 'src/app/models/dto/post-dto';
 import { Post } from 'src/app/models/post';
 import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
@@ -22,11 +24,15 @@ export class PostsComponent implements OnInit {
       }
     });
 
-    this.posts = this.getPosts();
+    this.getPosts().subscribe(posts => {
+      for (let post of posts) {
+        this.posts.push(Post.fromPostDto(post));
+      }
+    });
   }
 
   getPosts() {
-    return this.postService.getPosts().filter(post => post.userId === this.authService.getCurrentUser().id);
+    return this.postService.getPosts();
   }
 
   getPostDate(date: Date | undefined) {
@@ -44,7 +50,13 @@ export class PostsComponent implements OnInit {
     }
     
     this.postService.deletePostById(id);
-    this.posts = this.getPosts();
+
+    this.getPosts().subscribe(result => {
+      for (let post of result.data) {
+        // this.posts.push(Post.fromPostDto(post));
+        console.log(post);
+      }
+    });
   }
 
 }

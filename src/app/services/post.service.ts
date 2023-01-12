@@ -1,10 +1,17 @@
 import { Injectable } from "@angular/core";
 import { Post } from "../models/post";
+import { HttpClient } from "@angular/common/http";
+import { PostDto } from "../models/dto/post-dto";
+import { Observable } from "rxjs";
+import { AuthService } from "src/app/services/auth.service";
 
 @Injectable({
   providedIn: "root",
 })
 export class PostService {
+  apiUrl = "http://localhost:8080/api";
+  // apiUrl = "https://poststead.online/api";
+
   posts: Post[] = [
     {
       id: "1",
@@ -24,14 +31,25 @@ export class PostService {
     },
   ];
 
-  constructor() {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   getPosts() {
-    return this.posts;
+    return this.http.get<any>(`${this.apiUrl}/posts/getAll`);
   }
 
   getPostById(id: string) {
-    return this.posts.find((post) => post.id === id);
+    return this.http.get<PostDto>(`${this.apiUrl}/posts/post/${id}`);
+  }
+
+  createPost(post: Post): Observable<PostDto> {
+    return this.http.post<PostDto>(`${this.apiUrl}/posts`, {
+      post,
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Authorization": `Basic ${btoa(this.authService.getCurrentUserUsername() + ":" + this.authService.getCurrentUserPassword())}`
+      },
+    });
   }
 
   deletePostById(id: string) {
