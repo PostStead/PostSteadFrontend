@@ -16,7 +16,10 @@ export class LoginComponent implements OnInit {
   hideShowPassword: string = "password";
   error: any;
 
-  constructor(private userService: UserService, private authService: AuthService) {}
+  constructor(
+    private userService: UserService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -29,15 +32,12 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    // console.log(this.user);
-
     if (!this.user.password || !this.user.username) {
       return;
     }
 
     this.userService.login(this.user.username, this.user.password).subscribe({
       next: (data) => {
-        console.log(data);
         this.authService.setIsLoggedIn(true);
         localStorage.setItem("currentUser", JSON.stringify(data));
         localStorage.setItem("currentUserPassword", this.user.password ?? "");
@@ -45,9 +45,8 @@ export class LoginComponent implements OnInit {
         window.location.href = "/";
       },
       error: (error) => {
-        console.log(error);
         this.error = error;
-      }
+      },
     });
   }
 }

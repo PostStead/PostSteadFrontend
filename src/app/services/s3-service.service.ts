@@ -33,7 +33,6 @@ export class S3ServiceService {
 
     try {
       const response = await this.bucket.send(new PutObjectCommand(params));
-      console.log("SUCCESS", response);
     } catch (error) {
       console.log("FAILURE", error);
     }
@@ -47,7 +46,6 @@ export class S3ServiceService {
 
     try {
       const response = await this.bucket.send(new GetObjectCommand(params));
-      console.log("SUCCESS", response);
       return response;
     } catch (error) {
       console.log("FAILURE", error);

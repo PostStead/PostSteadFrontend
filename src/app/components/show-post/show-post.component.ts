@@ -27,25 +27,14 @@ export class ShowPostComponent implements OnInit {
       return;
     }
 
-    this.postService.getPostById(this.id).subscribe((post) => {
-      this.post = post;
-    });
-
-    if (!this.post) {
-      // redirect to 404
-      window.location.href = "/404";
-      return;
-    }
-
-    let foundUser;
-
-    if (this.post.createdBy) {
-      foundUser = this.userService.getUserById(this.post.createdBy);
-    }
-
-    if (foundUser) {
-      this.user = foundUser;
-    }
+    this.postService.getPostById(this.id)?.subscribe(
+      (post) => {
+        this.post = post;
+      },
+      (error) => {
+        window.location.href = "/404";
+      }
+    );
   }
 
   getPostDate() {
@@ -60,6 +49,5 @@ export class ShowPostComponent implements OnInit {
 
   navigateBack() {
     window.history.back();
-    // window.location.href = "/";
   }
 }

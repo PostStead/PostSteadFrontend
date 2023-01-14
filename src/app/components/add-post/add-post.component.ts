@@ -53,10 +53,8 @@ export class AddPostComponent implements OnInit {
 
   addPost() {
     this.post.url = this.s3Service.getSignedUrl(this.internalFileName);
-    console.log(this.internalFileName);
 
     this.postService.createPost(this.post).subscribe((result) => {
-      console.log(result);
       window.location.href = "/";
     });
   }

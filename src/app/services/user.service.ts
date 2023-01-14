@@ -49,11 +49,6 @@ export class UserService {
   }
 
   public getUserByUsername(username: string): Observable<User> {
-    console.log(
-      "response:",
-      this.http.get<User>(`${this.apiUrl}/user/${username}`)
-    );
-    // return this.http.get<User>(`${this.apiUrl}/users/${username}`);
     return this.http.get<User>(`${this.apiUrl}/users/alex`, {
       headers: {
         "Content-Type": "application/json",
@@ -86,17 +81,6 @@ export class UserService {
     email: string,
     password: string
   ): Observable<User> {
-    // return this.http.post<User>(`${this.apiUrl}/users`, {
-    //   name: username,
-    //   email: email,
-    //   password: password,
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     "Access-Control-Allow-Origin": "*",
-    //     "Authorization": "Basic " + btoa(username + ":" + password)
-    //   },
-    // });
-    console.log(username, email, password);
     return this.http.post<User>(`${this.apiUrl}/users`, {
       userName: username,
       email: email,

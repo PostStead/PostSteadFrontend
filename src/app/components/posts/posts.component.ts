@@ -29,15 +29,15 @@ export class PostsComponent implements OnInit {
 
     this.getPosts().subscribe((result) => {
       for (let post of result.data) {
-        // this.posts.push(Post.fromPostDto(post));
-        console.log(post);
         this.posts.push(post);
       }
     });
   }
 
   getPosts() {
-    return this.postService.getPosts();
+    return this.postService.getPostsByUser(
+      this.authService.getCurrentUserUsername()
+    );
   }
 
   getPostDate(date: Date | undefined) {
@@ -55,13 +55,11 @@ export class PostsComponent implements OnInit {
     }
 
     this.postService.deletePostById(id).subscribe((result) => {
-      console.log(result);
+      this.posts = [];
     });
 
     this.getPosts().subscribe((result) => {
       for (let post of result.data) {
-        // this.posts.push(Post.fromPostDto(post));
-        console.log(post);
         this.posts.push(post);
       }
     });

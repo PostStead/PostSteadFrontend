@@ -12,14 +12,41 @@ export class PostService {
   apiUrl = "http://localhost:8080/api";
   // apiUrl = "https://poststead.online/api";
 
+  httpOptions = {
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      Authorization: `Basic ${btoa(
+        this.authService.getCurrentUserUsername() +
+          ":" +
+          this.authService.getCurrentUserPassword()
+      )}`,
+    },
+  };
+
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   getPosts() {
     return this.http.get<any>(`${this.apiUrl}/posts/getAll`);
   }
 
+  getPostsByUser(username: string) {
+    return this.http.get<any>(
+      `${this.apiUrl}/posts/${username}`,
+      this.httpOptions
+    );
+  }
+
   getPostById(id: string) {
-    return this.http.get<Post>(`${this.apiUrl}/posts/post/${id}`);
+    if (!this.authService.getCurrentUser()) {
+      window.location.href = "/login";
+      return;
+    }
+
+    return this.http.get<Post>(
+      `${this.apiUrl}/posts/post/${id}`,
+      this.httpOptions
+    );
   }
 
   createPost(post: Post): Observable<Post> {
@@ -63,7 +90,7 @@ export class PostService {
     return this.http.delete(
       `${
         this.apiUrl
-      }/delete/${this.authService.getCurrentUserUsername()}/${id}`,
+      }/posts/delete/${this.authService.getCurrentUserUsername()}/${id}`,
       httpOptions
     );
   }

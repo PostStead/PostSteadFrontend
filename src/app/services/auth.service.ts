@@ -27,14 +27,13 @@ export class AuthService {
   login(username: string, password: string) {
     return this.userService.login(username, password).subscribe({
       next: (response) => {
-        console.log(response);
         this._isLoggedIn$.next(true);
         localStorage.setItem("currentUser", JSON.stringify(response));
       },
       error: (error) => {
         console.log(error);
         return { errorCode: 500, errorMessage: "Invalid username or password" };
-      }
+      },
     });
   }
 

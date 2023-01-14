@@ -7,10 +7,9 @@
       <h1 class="card-title">{{ post.title }}</h1>
       <h6>
         Posted by:
-        <span class="username">{{ user.username }}</span>
-        @
+        <span class="username">{{ post.createdBy }}</span>
         <span>
-          {{ getPostDate() }}
+          {{ getPostDate() ? "@" + getPostDate() : "" }}
         </span>
       </h6>
     </div>

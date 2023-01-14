@@ -8,7 +8,7 @@
         tabindex="0"
         class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
       >
-        <li><a href="/my-posts">My Posts</a></li>
+        <li *ngIf="!isLoggedIn"><a href="/my-posts">My Posts</a></li>
         <li><a href="/">Homepage</a></li>
         <li><a href="/about">About</a></li>
       </ul>
