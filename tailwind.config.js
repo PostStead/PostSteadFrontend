@@ -9,4 +9,13 @@ module.exports = {
   plugins: [
     require("daisyui")
   ],
+  devServer: {
+    open: true,
+    allowedHosts: [
+      "localhost",
+      ".poststead.online",
+      "poststead.online",
+      "www.poststead.online",
+    ]
+  }
 }
