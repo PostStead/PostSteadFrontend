@@ -8,8 +8,8 @@ import { UserDto } from "../models/dto/user-dto";
   providedIn: "root",
 })
 export class UserService {
-  apiUrl = "https://poststeadgateway:8080/api";
-  // apiUrl = "https://poststead.online/api";
+  // apiUrl = "http://localhost:8080/api";
+  apiUrl = "https://poststead.online/api";
   apiProxyConfig = {
     headers: {
       "Content-Type": "application/json",

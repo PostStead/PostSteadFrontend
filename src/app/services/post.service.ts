@@ -9,8 +9,8 @@ import { AuthService } from "src/app/services/auth.service";
   providedIn: "root",
 })
 export class PostService {
-  apiUrl = "https://poststeadgateway:8080/api";
-  // apiUrl = "https://poststead.online/api";
+  // apiUrl = "http://localhost:8080/api";
+  apiUrl = "https://poststead.online/api";
 
   httpOptions = {
     headers: {
